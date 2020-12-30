@@ -1,0 +1,27 @@
+# these are http requests to be used with IntelliJ IDEA
+
+GET http://localhost:8080/api/
+Accept: application/json
+
+###
+POST http://localhost:8080/api
+Content-Type: application/json
+
+{ "url" :  "http://www.google.it" }
+
+###
+PUT http://localhost:8080/api/uIWLlz
+Content-Type: application/json
+
+{ "url" :  "http://www.slashdot.org" }
+
+###
+GET http://localhost:8080/api/?? # replace me with the right shortened url
+
+###
+GET http://localhost:8080/?? # replace me with the right shortened url
+
+###
+DELETE http://localhost:8080/api/?? # replace me with the right shortened url
+
+
