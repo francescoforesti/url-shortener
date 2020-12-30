@@ -1,5 +1,5 @@
-const persistence = require('../src/persistence/repository')
-const model = require('../src/model/shorturl')
+const persistence = require('../dist/persistence/repository')
+const model = require('../dist/model/shorturl')
 
 test('the repository is initially empty', async () => {
     let repo = new persistence.Repository();

@@ -1,4 +1,4 @@
-const service = require('../src/service/shortener')
+const service = require('../dist/service/shortener')
 
 test('creating a shortened url', async () => {
     let shortener = new service.Shortener();
