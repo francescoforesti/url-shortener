@@ -86,6 +86,7 @@ export default class Api {
                         shortUrl.shortened = oldKey; // put the candle back
                         repo.update(shortUrl)
                             .then(saved => res.status(201).send(saved))
+                            .catch(err => res.status(500).contentType("application/json").send(err));
                     }
                 ).catch((reason => res.status(422).contentType("application/json").send(reason)))
             repo.update(req.body)

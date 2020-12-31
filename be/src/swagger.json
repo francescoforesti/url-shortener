@@ -142,10 +142,5 @@
         }
       }
     }
-  },
-  "components" : {
-    "schemas": {
-      "Shorturl": {}
-    }
   }
 }

@@ -22,6 +22,6 @@ echo '..done'
 echo 'Step 2: build the frontend..'
 cd fe && npm install && npm run build:production
 cd "$ROOT_DIR" || exit
-cp -rf fe/build/* dist/frontend/
+cp -rf fe/build/ dist/frontend/
 echo '..done!'
 echo 'now execute the "run.sh" script (sh run.sh)'
