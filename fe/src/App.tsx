@@ -6,12 +6,11 @@ import {EditUrl} from "./pages/EditUrl";
 import {Redirect} from "./pages/Redirect";
 import 'antd/dist/antd.css';
 
-// TODO: env
-export const BASE_URL = 'http://localhost:8080/api/'
+export const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:8080/api/'
 
 function App() {
   return (
-      <div className="App flex-container">
+      <div className="App">
         <Switch>
           <Route component={Urls} path="/" exact={true}/>
           <Route component={EditUrl} path="/urls/new" exact={true} />

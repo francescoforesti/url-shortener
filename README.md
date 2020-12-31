@@ -21,7 +21,8 @@ In order to build and run the project the following prerequisites must be met:
 Once these conditions are met, just do the following:
 
 ```
+cd in the project root directory
 sh build.sh
 sh start.sh
-open a browser and point to localhost:8080/app
+open a browser and point to localhost:8080/application
 ```

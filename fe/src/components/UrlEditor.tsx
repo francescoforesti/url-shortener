@@ -1,36 +1,36 @@
 import {Shorturl} from "../types/types";
 import React from "react";
-import {Button, Form, Input} from "antd";
+import {Button, Card, Form, Input} from "antd";
 import {FormInstance, FormItemProps} from "antd/es/form";
 
 export interface Props {
     url: Shorturl;
-    onSubmit: (item: Shorturl) => void
+    onSubmit: (item: Shorturl) => void;
+    onFormError: (error: string) => void;
+}
+export interface State {
+    formError: boolean
 }
 
-export class UrlEditor extends React.Component<Props, {}> {
+export class UrlEditor extends React.Component<Props, State> {
     private formRef: React.RefObject<FormInstance>;
 
     constructor(props: Props) {
         super(props);
+        this.state = {
+            formError: false
+        }
         this.formRef = React.createRef<FormInstance>()
     }
 
     render() {
 
-        const tailLayout: FormItemProps = {
-            wrapperCol: {
-                span: 2,
-                offset: 18
-            }
-        };
-
         return (
-            <div style={{padding: "1rem", marginTop: "5vh"}}>
+            <Card title="Enter the URL to be shortened" >
                 <Form
                     ref={this.formRef}
-                    labelCol={{span: 4, offset: 1}}
-                    wrapperCol={{span: 12, offset: 3}}
+                    labelCol={{span: 4, offset: 2}}
+                    wrapperCol={{span: 12}}
                     layout="horizontal"
                     onFinish={this.onFinish}
                     onFinishFailed={this.onFinishFailed}
@@ -44,22 +44,29 @@ export class UrlEditor extends React.Component<Props, {}> {
                                ]}>
                         <Input/>
                     </Form.Item>
-                    <Form.Item {...tailLayout}>
-                        <Button htmlType={"submit"}>Save</Button>
+                    <Form.Item {...({
+                        wrapperCol: {
+                            offset: 17
+                        }
+                    })}>
+                        <Button type="primary" htmlType={"submit"}>Save</Button>
                     </Form.Item>
 
                 </Form>
-            </div>
+            </Card>
         );
     }
 
     onFinish = (values: any) => {
+        this.setState({
+            formError: false
+        })
         let updated = {...this.props.url, ...values};
         this.props.onSubmit(updated);
     }
 
     onFinishFailed = () => {
-        window.alert("something went wrong")
+        this.props.onFormError("Please fill out all the required fields")
     }
 
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>, nextContext: any): boolean {

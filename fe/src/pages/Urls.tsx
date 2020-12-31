@@ -19,13 +19,7 @@ export class Urls extends React.Component<{}, State> {
 
     render() {
         return (
-            <div className='flex-container'>
-                <div className='row' style={{padding: "1rem"}}>
-
-                    <UrlTable urls={this.state.urls} onDelete={this.handleDelete}/>
-
-                </div>
-            </div>
+            <UrlTable urls={this.state.urls} onDelete={this.handleDelete}/>
         );
     }
 

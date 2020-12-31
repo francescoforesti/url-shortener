@@ -1,6 +1,5 @@
 import {Shorturl} from "../model/shorturl";
 
-// TODO: test
 export class Shortener {
     private current: number = new Date().valueOf();
 

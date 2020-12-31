@@ -21,13 +21,9 @@ export class Redirect extends React.Component<RouteComponentProps<Parameters>, S
 
     render() {
         return (
-            <div className='flex-container'>
-                <div className='row'>
-                    <h4>
-                        Wait to be redirected to the requested url..
-                    </h4>
-                </div>
-            </div>
+            <h4>
+                Wait to be redirected to the requested url..
+            </h4>
         );
     }
 

@@ -42,8 +42,8 @@ export class EditUrl extends React.Component<RouteComponentProps<Parameters>, St
             />
         }
         return (
-            <div className="row">
-                <UrlEditor url={this.state.url} onSubmit={this.saveOrUpdate}/>
+            <div>
+                <UrlEditor url={this.state.url} onSubmit={this.saveOrUpdate} onFormError={this.updateError}/>
                 {alert}
             </div>
         );
@@ -56,21 +56,21 @@ export class EditUrl extends React.Component<RouteComponentProps<Parameters>, St
     }
 
     saveOrUpdate = async (item: Shorturl) => {
-        this.setState({
-            url: this.state.url,
-            serverError: undefined
-        })
+        this.updateError(undefined);
         try {
             this.id ?
                 await EditUrl.update(item, this.id) :
                 await EditUrl.save(item);
             this.props.history.push('/');
         } catch(err) {
-            this.setState({
-                url: this.state.url,
-                serverError: err.response.data
-            })
+            this.updateError(err.response.data)
         }
+    }
+
+    private updateError = (errorMessage: string | undefined) => {
+        this.setState({
+            serverError: errorMessage
+        })
     }
 
     private static async findById(id: string) {
