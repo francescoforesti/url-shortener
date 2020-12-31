@@ -1,0 +1,151 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Url Shortener API",
+    "description": "Simple CRUD API for managing shortened urls",
+    "version": "1.0.0"
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/{shortUrl}": {
+      "get": {
+        "summary": "Redirects to the corresponding URL",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "shortUrl",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "shortened url"
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Found"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api": {
+      "get": {
+        "summary": "Returns the list of shortened urls currently saved",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a new shortened url and returns it",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/api/{shortUrl}": {
+      "get": {
+        "summary": "Retrieves a single Shorturl entity by ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "shortUrl",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "shortened url"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates an existing shortened url and returns it",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "shortUrl",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "shortened url"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a shortened url",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "shortUrl",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "shortened url"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Entity deleted"
+          },
+          "410": {
+            "description": "Entity not found"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas": {
+      "Shorturl": {}
+    }
+  }
+}

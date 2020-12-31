@@ -13,7 +13,7 @@ rm -rf fe/build
 mkdir -p dist/frontend
 
 echo 'Step 1: build and test the backend...'
-cd be && npm install && npm run test # run tsc & tests during build
+cd be && npm install && npm run tsc && npm run test # run tsc & tests during build
 cd "$ROOT_DIR" || exit
 cp -rf be/dist/ dist/
 cp -rf be/node_modules dist/

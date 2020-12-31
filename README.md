@@ -4,13 +4,8 @@ This is an example of an url shortening service, with a simple crud backend made
 
 ### Main Features
 
-#### Backend
-
-TODO
-
-#### Frontend
-
-TODO
+* the application frontend is served at `http://localhost:8080/application`
+* the API documentation (swagger) is served at `http://localhost:8080/api/docs/`
 
 #### Build and run
 
@@ -24,5 +19,5 @@ Once these conditions are met, just do the following:
 cd in the project root directory
 sh build.sh
 sh start.sh
-open a browser and point to localhost:8080/application
+open a browser and navigate to localhost:8080/application or localhost:8080/api/docs
 ```

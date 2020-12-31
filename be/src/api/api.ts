@@ -21,6 +21,8 @@ export default class Api {
         // TODO : serve only in production
         this._express.use('/application', express.static('frontend'));
 
+        this.serveApiDocs();
+
         this.addFindAll(this._repository);
         this.addFindOne(this._repository);
         this.addCreate(this._repository, this._shortener);
@@ -30,13 +32,16 @@ export default class Api {
 
     }
 
+    private serveApiDocs() {
+        console.log("adding api swagger docs")
+        const swaggerUi = require('swagger-ui-express');
+        const swaggerDocument = require('../swagger.json');
+        this._express.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+    }
+
     listen(port: number, callback: () => void) {
         this._express
             .listen(port, callback);
-    }
-
-    get express() {
-        return this._express;
     }
 
     private addRedirector(repo: Repository) {
