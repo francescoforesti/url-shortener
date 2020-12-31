@@ -18,6 +18,9 @@ export default class Api {
         this._express.use(bodyParser.json());
         this._express.use(bodyParser.urlencoded({extended: true}));
 
+        // TODO : serve only in production
+        this._express.use('/application', express.static('frontend'));
+
         this.addFindAll(this._repository);
         this.addFindOne(this._repository);
         this.addCreate(this._repository, this._shortener);
@@ -32,9 +35,12 @@ export default class Api {
             .listen(port, callback);
     }
 
+    get express() {
+        return this._express;
+    }
+
     private addRedirector(repo: Repository) {
         this._express.get(`/:shortened`, function (req: Request, res: Response) {
-            console.log("got redirector")
             repo.findOne(req.params.shortened)
                 .then(updated => res.status(302).header('Location', updated.url).send())
                 .catch(reason => res.status(404).contentType("text/plain").send(reason))
@@ -61,7 +67,7 @@ export default class Api {
             let reqBody: Shorturl = req.body;
             shortener.newShortUrl(reqBody.url)
                 .then(shortUrl => repo.add(shortUrl)
-                    .then(saved => res.status(201).send(saved))
+                    .then(saved => res.status(201).header('Location', `${baseUrl}${shortUrl.shortened}`).send(saved))
                 ).catch((reason => res.status(422).contentType("application/json").send(reason)))
         })
     }
