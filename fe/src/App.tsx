@@ -6,7 +6,7 @@ import {EditUrl} from "./pages/EditUrl";
 import {Redirect} from "./pages/Redirect";
 import 'antd/dist/antd.css';
 
-export const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:8080/api/'
+export const BASE_URL = '/api/'
 
 function App() {
   return (

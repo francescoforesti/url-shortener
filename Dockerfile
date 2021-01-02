@@ -1,11 +1,11 @@
-FROM node:12 as builder
+FROM arm32v7/node:12 as builder
 WORKDIR /build
 COPY be ./be
 COPY fe ./fe
 COPY build.sh ./
 RUN sh build.sh
 
-FROM node:12
+FROM arm32v7/node:12
 WORKDIR /app
 COPY --from=builder /build/dist/dist ./
 COPY --from=builder /build/dist/node_modules ./node_modules
